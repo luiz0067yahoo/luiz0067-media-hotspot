@@ -1,0 +1,27 @@
+{
+  "name": "luiz0067-media-hotspot",
+  "version": "1.0.0",
+  "description": "Gutenberg block plugin for interactive percentage Hotspots, Agamotto Layer Sliders, and 360 Panorama with Bootstrap 5 modals and Font Awesome pulsating markers.",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js --watch"
+  },
+  "keywords": [
+    "wordpress",
+    "gutenberg",
+    "block",
+    "hotspots",
+    "agamotto",
+    "image-slider",
+    "panorama-360",
+    "bootstrap-5",
+    "font-awesome"
+  ],
+  "author": "luiz0067",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "sass": "^1.85.0"
+  }
+}

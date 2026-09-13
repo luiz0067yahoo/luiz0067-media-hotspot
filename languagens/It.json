@@ -1,0 +1,61 @@
+{
+  "locale": "it-IT",
+  "block": {
+    "title": "Media Interattivo con Hotspot (Luiz0067)",
+    "description": "Punti cliccabili (hotspot) con coordinate percentuali (X%, Y%) su immagini, livelli sovrapposti con cursore scorrevole (Agamotto / Prima-Dopo) e panorama interattivo a 360°."
+  },
+  "modes": {
+    "imageHotspots": "Punti di Interesse (Hotspot)",
+    "imageSliderLayers": "Livelli Scorrevoli (Agamotto / Prima e Dopo)",
+    "panorama360": "Panorama 360° Interattivo"
+  },
+  "settings": {
+    "mediaType": "Tipo di Media Interattivo",
+    "mediaTypeHelp": "Seleziona la modalità interattiva da visualizzare.",
+    "mainImage": "Immagine Principale / Base",
+    "uploadImage": "Seleziona Immagine",
+    "replaceImage": "Sostituisci Immagine",
+    "removeImage": "Rimuovi Immagine",
+    "clickToAddHelp": "Suggerimento: In modalità hotspot, fai clic direttamente sull'immagine per posizionare un nuovo punto!",
+    "hotspots": "Gestione Hotspot",
+    "addHotspot": "Aggiungi Punto Manualmente",
+    "hotspotItem": "Punto {index}",
+    "coordinates": "Coordinate Percentuali",
+    "coordX": "Posizione X (%)",
+    "coordY": "Posizione Y (%)",
+    "title": "Titolo del Punto",
+    "titlePlaceholder": "Es: Guglia Centrale",
+    "description": "Descrizione / Contenuto",
+    "descriptionPlaceholder": "Inserisci il testo per il popover o finestra modale...",
+    "icon": "Icona Font Awesome",
+    "iconColor": "Colore del Segnaposto",
+    "quizSettings": "Impostazioni di Valutazione / Quiz",
+    "showQuizEvaluation": "Attiva Modalità Quiz / Valutazione",
+    "showQuizHelp": "Valuta i clic degli utenti assegnando punteggi ai punti corretti con feedback istantaneo.",
+    "isCorrectTarget": "Questo punto è un obiettivo corretto?",
+    "feedback": "Messaggio di Feedback",
+    "feedbackPlaceholder": "Es: Esatto! Hai individuato l'elemento corretto.",
+    "deleteHotspot": "Elimina Punto",
+    "layers": "Livelli Sovrapposti (Agamotto)",
+    "addLayer": "Aggiungi Nuovo Livello",
+    "layerTitle": "Etichetta Livello {index}",
+    "layerPlaceholder": "Es: Raggi X, Bozza Originale, 2024...",
+    "layerImage": "Immagine del Livello",
+    "deleteLayer": "Elimina Livello",
+    "sliderInitial": "Posizione Iniziale Cursore (%)",
+    "panoramaSettings": "Impostazioni Panorama 360°",
+    "autoRotate": "Rotazione Automatica Fluida"
+  },
+  "frontend": {
+    "openModal": "Visualizza Dettagli",
+    "closeModal": "Chiudi",
+    "correct": "Corretto!",
+    "incorrect": "Riprova!",
+    "score": "Punteggio",
+    "found": "bersagli trovati",
+    "restartQuiz": "Ricomincia Quiz",
+    "layerControl": "Controllo Livelli",
+    "dragToExplore": "Trascina per esplorare a 360°",
+    "panoramaHint": "Usa il mouse o il tocco per ruotare la visuale"
+  }
+}

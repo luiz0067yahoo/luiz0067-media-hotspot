@@ -1,0 +1,61 @@
+{
+  "locale": "pt-BR",
+  "block": {
+    "title": "Mídia Interativa com Hotspots (Luiz0067)",
+    "description": "Pontos clicáveis (hotspots) com coordenadas percentuais (X%, Y%) sobre imagem, imagens sobrepostas com controle deslizante (estilo Agamotto/Before-After) e panorama 360° interativo."
+  },
+  "modes": {
+    "imageHotspots": "Pontos de Interesse (Hotspots)",
+    "imageSliderLayers": "Camadas Deslizantes (Agamotto / Antes e Depois)",
+    "panorama360": "Panorama 360° Interativo"
+  },
+  "settings": {
+    "mediaType": "Tipo de Mídia Interativa",
+    "mediaTypeHelp": "Selecione o modo de visualização interativa que deseja criar.",
+    "mainImage": "Imagem Principal / Base",
+    "uploadImage": "Selecionar Imagem",
+    "replaceImage": "Substituir Imagem",
+    "removeImage": "Remover Imagem",
+    "clickToAddHelp": "Dica: Com o modo de hotspots ativo, clique diretamente na imagem para fixar um novo ponto!",
+    "hotspots": "Gerenciador de Hotspots",
+    "addHotspot": "Adicionar Ponto Manualmente",
+    "hotspotItem": "Ponto {index}",
+    "coordinates": "Coordenadas Percentuais",
+    "coordX": "Posição X (%)",
+    "coordY": "Posição Y (%)",
+    "title": "Título do Ponto",
+    "titlePlaceholder": "Ex: Torre Central",
+    "description": "Descrição / Conteúdo",
+    "descriptionPlaceholder": "Insira o conteúdo exibido na janela modal ou tooltip...",
+    "icon": "Ícone Font Awesome",
+    "iconColor": "Cor do Marcador",
+    "quizSettings": "Configurações de Avaliação / Teste",
+    "showQuizEvaluation": "Ativar Modo Teste / Quiz Avaliativo",
+    "showQuizHelp": "Valida cliques dos usuários, atribuindo pontuação a pontos corretos e exibindo feedback instantâneo.",
+    "isCorrectTarget": "Este ponto é uma resposta correta?",
+    "feedback": "Mensagem de Feedback",
+    "feedbackPlaceholder": "Ex: Parabéns! Você encontrou o elemento correto.",
+    "deleteHotspot": "Remover Ponto",
+    "layers": "Camadas Sobrepostas (Agamotto)",
+    "addLayer": "Adicionar Nova Camada",
+    "layerTitle": "Rótulo da Camada {index}",
+    "layerPlaceholder": "Ex: Visão Raio-X, Pintura Original, 2024...",
+    "layerImage": "Imagem da Camada",
+    "deleteLayer": "Remover Camada",
+    "sliderInitial": "Posição Inicial do Slider (%)",
+    "panoramaSettings": "Ajustes do Panorama 360°",
+    "autoRotate": "Rotação Automática Suave"
+  },
+  "frontend": {
+    "openModal": "Ver detalhes",
+    "closeModal": "Fechar",
+    "correct": "Correto!",
+    "incorrect": "Tente novamente!",
+    "score": "Pontuação",
+    "found": "alvos encontrados",
+    "restartQuiz": "Reiniciar Quiz",
+    "layerControl": "Controle de Camadas",
+    "dragToExplore": "Clique e arraste para explorar em 360°",
+    "panoramaHint": "Use o mouse ou toque para girar a visualização"
+  }
+}

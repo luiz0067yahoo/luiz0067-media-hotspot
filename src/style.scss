@@ -1,0 +1,453 @@
+// Luiz0067 Media Hotspot - Frontend Stylesheet
+$primary: #0d6efd;
+$success: #198754;
+$danger: #dc3545;
+$warning: #ffc107;
+$dark: #212529;
+
+.wp-block-luiz0067-media-hotspot {
+  position: relative;
+  width: 100%;
+  margin: 2rem auto;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+  background-color: #0b0f19;
+  user-select: none;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  // Media Wrapper
+  .luiz0067-media-viewport {
+    position: relative;
+    width: 100%;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #111827;
+    overflow: hidden;
+
+    .luiz0067-base-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      vertical-align: middle;
+      pointer-events: auto;
+    }
+  }
+
+  // Quiz evaluation header bar
+  .luiz0067-quiz-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.25rem;
+    background: rgba(17, 24, 39, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #f3f4f6;
+
+    .luiz0067-quiz-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      i {
+        color: $warning;
+      }
+    }
+
+    .luiz0067-quiz-score {
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .luiz0067-quiz-reset-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #e5e7eb;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+
+  // Hotspot Pins
+  .luiz0067-hotspot-pin {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2.5px solid #ffffff;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 20;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s;
+    outline: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+
+    // Font awesome icon
+    i {
+      pointer-events: none;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+    }
+
+    // Outer pulsating ring
+    .luiz0067-pulse-ring {
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      pointer-events: none;
+      animation: luiz0067-pulse 2s infinite cubic-bezier(0.24, 0, 0.38, 1);
+    }
+
+    &:hover,
+    &:focus-visible {
+      transform: translate(-50%, -50%) scale(1.22);
+      z-index: 30;
+
+      .luiz0067-pin-tooltip {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, -10px);
+      }
+    }
+
+    // Mini preview tooltip on hover
+    .luiz0067-pin-tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s ease-out;
+      background: rgba(17, 24, 39, 0.92);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.65rem;
+      border-radius: 0.375rem;
+      white-space: nowrap;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgba(17, 24, 39, 0.92) transparent transparent transparent;
+      }
+    }
+
+    // Quiz evaluated states
+    &.is-correct {
+      background-color: $success !important;
+      border-color: #bbf7d0 !important;
+      animation: luiz0067-correct-bounce 0.6s ease;
+    }
+
+    &.is-incorrect {
+      background-color: $danger !important;
+      border-color: #fecaca !important;
+      animation: luiz0067-shake 0.4s ease;
+    }
+  }
+
+  // Agamotto / Image Slider Layers Mode
+  .luiz0067-layers-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    .luiz0067-layer-frame {
+      position: relative;
+      width: 100%;
+
+      img.luiz0067-base-layer {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .luiz0067-overlay-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        transition: opacity 0.1s linear;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+      }
+    }
+
+    // Slider Controls Panel
+    .luiz0067-slider-panel {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 560px;
+      padding: 0.85rem 1.25rem;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 9999px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 25;
+
+      .luiz0067-slider-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+        color: #94a3b8;
+        font-weight: 500;
+
+        .luiz0067-current-layer-label {
+          color: #38bdf8;
+          font-weight: 700;
+        }
+      }
+
+      .luiz0067-range-track-wrapper {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        input[type='range'].luiz0067-agamotto-slider {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 100%;
+          height: 8px;
+          border-radius: 4px;
+          background: rgba(255, 255, 255, 0.2);
+          outline: none;
+          cursor: pointer;
+
+          &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #38bdf8;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: transform 0.15s ease;
+
+            &:hover {
+              transform: scale(1.2);
+            }
+          }
+
+          &::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #38bdf8;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+          }
+        }
+      }
+
+      .luiz0067-layer-ticks {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 6px;
+        font-size: 0.72rem;
+        color: #94a3b8;
+      }
+    }
+  }
+
+  // 360° Panorama Viewer Mode
+  .luiz0067-panorama-viewport {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    background-color: #000;
+    overflow: hidden;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    canvas.luiz0067-panorama-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .luiz0067-panorama-controls {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 15;
+
+      button {
+        background: rgba(17, 24, 39, 0.85);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          background: rgba(17, 24, 39, 1);
+          border-color: #38bdf8;
+          color: #38bdf8;
+        }
+      }
+    }
+
+    .luiz0067-panorama-hint {
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(6px);
+      color: #e5e7eb;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+// Bootstrap 5 Native Modal Enhancements
+.modal.luiz0067-modal {
+  .modal-dialog {
+    max-width: 520px;
+  }
+
+  .modal-content {
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+    background: #ffffff;
+    overflow: hidden;
+
+    .modal-header {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 1rem 1.25rem;
+      background: #f8fafc;
+
+      .modal-title {
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: #0f172a;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+
+    .modal-body {
+      padding: 1.25rem;
+      color: #334155;
+      font-size: 0.95rem;
+      line-height: 1.6;
+
+      .luiz0067-quiz-feedback {
+        border-radius: 0.75rem;
+        padding: 0.85rem 1rem;
+        font-weight: 500;
+      }
+    }
+
+    .modal-footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 0.75rem 1.25rem;
+      background: #f8fafc;
+    }
+  }
+}
+
+// Keyframe Animations
+@keyframes luiz0067-pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes luiz0067-shake {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  20%, 60% { transform: translate(calc(-50% - 6px), -50%) rotate(-6deg); }
+  40%, 80% { transform: translate(calc(-50% + 6px), -50%) rotate(6deg); }
+}
+
+@keyframes luiz0067-correct-bounce {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  40% { transform: translate(-50%, -50%) scale(1.4); }
+  70% { transform: translate(-50%, -50%) scale(0.9); }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "luiz0067/media-hotspot",
+  "version": "1.0.0",
+  "title": "Luiz0067 Media Hotspot",
+  "category": "media",
+  "icon": "format-image",
+  "description": "Interactive percentage Hotspots, Agamotto Layer Sliders, and 360 Panorama with Bootstrap 5 modals and Font Awesome markers.",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"]
+  },
+  "textdomain": "luiz0067-media-hotspot",
+  "attributes": {
+    "mediaType": {
+      "type": "string",
+      "default": "image-hotspots"
+    },
+    "mainImage": {
+      "type": "string",
+      "default": ""
+    },
+    "layers": {
+      "type": "array",
+      "default": []
+    },
+    "hotspots": {
+      "type": "array",
+      "default": []
+    },
+    "showQuizEvaluation": {
+      "type": "boolean",
+      "default": false
+    },
+    "sliderValue": {
+      "type": "number",
+      "default": 50
+    },
+    "panoramaAutoRotate": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "editorScript": "file:./build/index.js",
+  "editorStyle": "file:./build/index.css",
+  "style": "file:./build/style-index.css",
+  "viewScript": "file:./build/view.js"
+}

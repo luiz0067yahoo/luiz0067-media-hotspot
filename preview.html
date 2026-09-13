@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luiz0067 Media Hotspot - Gutenberg Block Showcase</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 6 Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Block Styles -->
+  <link rel="stylesheet" href="./build/style-index.css">
+
+  <style>
+    :root {
+      --brand-primary: #38bdf8;
+      --brand-bg: #0b0f19;
+      --card-bg: #111827;
+    }
+
+    body {
+      background-color: var(--brand-bg);
+      color: #f3f4f6;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      min-height: 100vh;
+      padding-bottom: 4rem;
+    }
+
+    .showcase-header {
+      background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.18), transparent 70%),
+                  linear-gradient(180deg, #111827 0%, #0b0f19 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 2.5rem 1rem 1.75rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .badge-brand {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      font-size: 0.8rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .showcase-title {
+      font-weight: 800;
+      font-size: 2.3rem;
+      margin-top: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .showcase-subtitle {
+      color: #94a3b8;
+      max-width: 720px;
+      margin: 0.5rem auto 1.5rem;
+      font-size: 1rem;
+    }
+
+    .nav-pills-custom {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.35rem;
+      border-radius: 9999px;
+      gap: 0.4rem;
+    }
+
+    .nav-pills-custom .nav-link {
+      color: #94a3b8;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.55rem 1.25rem;
+      border-radius: 9999px;
+      transition: all 0.2s;
+    }
+
+    .nav-pills-custom .nav-link.active {
+      background: #38bdf8;
+      color: #0b0f19;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);
+    }
+
+    .demo-card {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      margin-bottom: 2.5rem;
+    }
+
+    .demo-card-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #fff;
+    }
+
+    .demo-card-desc {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-tag {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: #cbd5e1;
+    }
+
+    /* Editor Simulator in Preview */
+    .editor-sim-wrapper {
+      background: #0f172a;
+      border: 2px dashed #38bdf8;
+      border-radius: 1rem;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .editor-sim-canvas {
+      position: relative;
+      cursor: crosshair;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Showcase -->
+  <header class="showcase-header">
+    <div class="container">
+      <span class="badge-brand"><i class="fa-solid fa-layer-group me-1"></i> WordPress Gutenberg Plugin</span>
+      <h1 class="showcase-title">luiz0067-media-hotspot</h1>
+      <p class="showcase-subtitle">
+        Pontos clicáveis com coordenadas percentuais (X%, Y%), camadas deslizantes (estilo Agamotto / Before-After) e panorama 360° com modais Bootstrap 5 e ícones Font Awesome pulsantes.
+      </p>
+
+      <!-- Mode Switcher Navigation -->
+      <ul class="nav nav-pills nav-pills-custom" id="modeTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="tab-hotspots" data-bs-toggle="pill" data-bs-target="#content-hotspots" type="button" role="tab">
+            <i class="fa-solid fa-location-dot me-1"></i> 1. Hotspots & Quiz
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-agamotto" data-bs-toggle="pill" data-bs-target="#content-agamotto" type="button" role="tab">
+            <i class="fa-solid fa-sliders me-1"></i> 2. Camadas Agamotto
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-panorama" data-bs-toggle="pill" data-bs-target="#content-panorama" type="button" role="tab">
+            <i class="fa-solid fa-vr-cardboard me-1"></i> 3. Panorama 360°
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-editor" data-bs-toggle="pill" data-bs-target="#content-editor" type="button" role="tab">
+            <i class="fa-solid fa-wand-magic-sparkles me-1"></i> 4. Simulador do Editor
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Container Content -->
+  <main class="container">
+    <div class="tab-content" id="modeTabContent">
+
+      <!-- ==============================================
+           TAB 1: IMAGE HOTSPOTS WITH QUIZ & MODALS
+           ============================================== -->
+      <div class="tab-pane fade show active" id="content-hotspots" role="tabpanel">
+        <div class="demo-card">
+          <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+            <div>
+              <div class="demo-card-title">
+                <i class="fa-solid fa-location-crosshairs text-primary"></i>
+                Modo Hotspots com Avaliação (Quiz) e Modais Bootstrap 5
+              </div>
+              <div class="demo-card-desc">
+                Clique nos pontos pulsantes posicionados via coordenadas percentuais. Identifique os pontos corretos para pontuar no quiz e abrir as modais nativas com feedback instantâneo!
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <span class="feature-tag"><i class="fa-solid fa-check text-success me-1"></i>Font Awesome Pulsing</span>
+              <span class="feature-tag"><i class="fa-solid fa-window-restore text-info me-1"></i>Bootstrap 5 Modal</span>
+              <span class="feature-tag"><i class="fa-solid fa-bullseye text-warning me-1"></i>Quiz Validation</span>
+            </div>
+          </div>
+
+          <!-- Gutenberg Block: Hotspots Mode -->
+          <div class="wp-block-luiz0067-media-hotspot mode-image-hotspots" data-media-type="image-hotspots" data-quiz-eval="true">
+            <!-- Quiz Bar -->
+            <div class="luiz0067-quiz-bar">
+              <div class="luiz0067-quiz-title">
+                <i class="fa-solid fa-bullseye"></i>
+                <span>Encontre os 3 Componentes Principais da Arquitetura</span>
+              </div>
+              <div class="luiz0067-quiz-score">
+                <i class="fa-solid fa-trophy"></i>
+                <span class="luiz0067-score-count">0</span> / <span class="luiz0067-total-correct">3</span>
+              </div>
+              <button type="button" class="luiz0067-quiz-reset-btn" title="Reiniciar">
+                <i class="fa-solid fa-rotate-left"></i> Reiniciar
+              </button>
+            </div>
+
+            <!-- Media Viewport -->
+            <div class="luiz0067-media-viewport">
+              <!-- Crisp Architectural / Tech Landscape SVG -->
+              <svg class="luiz0067-base-img" viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" style="background:#090d16;">
+                <defs>
+                  <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#0f172a" />
+                    <stop offset="100%" stop-color="#1e293b" />
+                  </linearGradient>
+                  <linearGradient id="gridGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.15" />
+                    <stop offset="100%" stop-color="#818cf8" stop-opacity="0.05" />
+                  </linearGradient>
+                </defs>
+                <rect width="1000" height="560" fill="url(#skyGrad)"/>
+                <!-- Background Grid -->
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                </pattern>
+                <rect width="1000" height="560" fill="url(#grid)"/>
+
+                <!-- Tech Ecosystem Illustration -->
+                <!-- Cloud / API Server -->
+                <g transform="translate(180, 110)">
+                  <rect width="180" height="110" rx="16" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+                  <text x="90" y="55" fill="#38bdf8" font-size="16" font-weight="bold" text-anchor="middle">API & Backend</text>
+                  <text x="90" y="80" fill="#94a3b8" font-size="12" text-anchor="middle">REST / GraphQL Node</text>
+                  <circle cx="30" cy="30" r="6" fill="#22c55e"/>
+                  <circle cx="50" cy="30" r="6" fill="#eab308"/>
+                  <circle cx="70" cy="30" r="6" fill="#ef4444"/>
+                </g>
+
+                <!-- Central Database / Storage -->
+                <g transform="translate(500, 90)">
+                  <path d="M 0 30 C 0 10, 180 10, 180 30 L 180 100 C 180 120, 0 120, 0 100 Z" fill="#1e293b" stroke="#818cf8" stroke-width="2"/>
+                  <ellipse cx="90" cy="30" rx="90" ry="20" fill="#334155" stroke="#818cf8" stroke-width="2"/>
+                  <ellipse cx="90" cy="65" rx="90" ry="20" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="4"/>
+                  <text x="90" y="80" fill="#c7d2fe" font-size="16" font-weight="bold" text-anchor="middle">Banco de Dados</text>
+                  <text x="90" y="100" fill="#94a3b8" font-size="12" text-anchor="middle">Cluster MySQL / Redis</text>
+                </g>
+
+                <!-- Core App Gateway (Central target) -->
+                <g transform="translate(380, 290)">
+                  <polygon points="120,10 230,70 230,190 120,250 10,190 10,70" fill="#1e293b" stroke="#f43f5e" stroke-width="3"/>
+                  <text x="120" y="125" fill="#fda4af" font-size="18" font-weight="bold" text-anchor="middle">Gateway Core</text>
+                  <text x="120" y="150" fill="#94a3b8" font-size="13" text-anchor="middle">WordPress Gutenberg Engine</text>
+                </g>
+
+                <!-- Security Firewall -->
+                <g transform="translate(740, 280)">
+                  <rect width="180" height="120" rx="14" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+                  <text x="90" y="60" fill="#fde047" font-size="16" font-weight="bold" text-anchor="middle">Firewall & Auth</text>
+                  <text x="90" y="85" fill="#94a3b8" font-size="12" text-anchor="middle">OAuth 2.0 / JWT Shield</text>
+                </g>
+
+                <!-- Connecting Circuit Lines -->
+                <path d="M 270 220 L 270 340 L 390 340" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6"/>
+                <path d="M 590 200 L 590 300" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="6"/>
+                <path d="M 610 340 L 740 340" fill="none" stroke="#eab308" stroke-width="2" stroke-dasharray="6"/>
+              </svg>
+
+              <!-- Hotspot 1: API (Correct) -->
+              <button type="button" class="luiz0067-hotspot-pin" style="left: 27%; top: 30%; background-color: #0d6efd;"
+                data-bs-toggle="modal" data-bs-target="#luiz0067-modal-api" data-spot-id="api" data-is-correct="true" aria-label="API Server">
+                <i class="fa-solid fa-server"></i>
+                <span class="luiz0067-pulse-ring" style="border-color: #0d6efd;"></span>
+                <span class="luiz0067-pin-tooltip">Servidor de API</span>
+              </button>
+
+              <!-- Hotspot 2: Database (Correct) -->
+              <button type="button" class="luiz0067-hotspot-pin" style="left: 59%; top: 25%; background-color: #6f42c1;"
+                data-bs-toggle="modal" data-bs-target="#luiz0067-modal-db" data-spot-id="db" data-is-correct="true" aria-label="Banco de Dados">
+                <i class="fa-solid fa-database"></i>
+                <span class="luiz0067-pulse-ring" style="border-color: #6f42c1;"></span>
+                <span class="luiz0067-pin-tooltip">Banco de Dados</span>
+              </button>
+
+              <!-- Hotspot 3: Gateway Core (Correct) -->
+              <button type="button" class="luiz0067-hotspot-pin" style="left: 50%; top: 68%; background-color: #dc3545;"
+                data-bs-toggle="modal" data-bs-target="#luiz0067-modal-gateway" data-spot-id="gateway" data-is-correct="true" aria-label="Gateway Core">
+                <i class="fa-solid fa-microchip"></i>
+                <span class="luiz0067-pulse-ring" style="border-color: #dc3545;"></span>
+                <span class="luiz0067-pin-tooltip">Gateway Central</span>
+              </button>
+
+              <!-- Hotspot 4: Firewall (Distractor / Test) -->
+              <button type="button" class="luiz0067-hotspot-pin" style="left: 83%; top: 61%; background-color: #fd7e14;"
+                data-bs-toggle="modal" data-bs-target="#luiz0067-modal-firewall" data-spot-id="firewall" data-is-correct="false" aria-label="Firewall">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span class="luiz0067-pulse-ring" style="border-color: #fd7e14;"></span>
+                <span class="luiz0067-pin-tooltip">Firewall Perimetral</span>
+              </button>
+            </div>
+
+            <!-- Modals for Hotspots -->
+            <!-- Modal 1 -->
+            <div class="modal fade luiz0067-modal" id="luiz0067-modal-api" tabindex="-1" aria-labelledby="modalLabelApi" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabelApi"><i class="fa-solid fa-server text-primary"></i> Servidor de API & Microsserviços</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>O nó de API é responsável pela orquestração de requisições assíncronas do bloco Gutenberg, processando dados dinâmicos e endpoints REST em alta velocidade.</p>
+                    <div class="luiz0067-quiz-feedback alert alert-success d-flex align-items-center gap-2 mt-3">
+                      <i class="fa-solid fa-circle-check text-success fa-lg"></i>
+                      <div><strong>Correto!</strong> Você identificou o servidor de API central. (+1 Ponto)</div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal 2 -->
+            <div class="modal fade luiz0067-modal" id="luiz0067-modal-db" tabindex="-1" aria-labelledby="modalLabelDb" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabelDb"><i class="fa-solid fa-database text-purple"></i> Banco de Dados Principal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Armazena metadados de mídia, coordenadas percentuais de hotspots, camadas em array e configurações de idiomas dos blocos.</p>
+                    <div class="luiz0067-quiz-feedback alert alert-success d-flex align-items-center gap-2 mt-3">
+                      <i class="fa-solid fa-circle-check text-success fa-lg"></i>
+                      <div><strong>Correto!</strong> Você identificou a camada de persistência. (+1 Ponto)</div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal 3 -->
+            <div class="modal fade luiz0067-modal" id="luiz0067-modal-gateway" tabindex="-1" aria-labelledby="modalLabelGateway" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabelGateway"><i class="fa-solid fa-microchip text-danger"></i> Gateway Central (Luiz0067 Engine)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Núcleo de renderização Gutenberg que compila os componentes `edit.js`, `save.js` e coordena a execução interativa no `view.js` com zero dependências externas.</p>
+                    <div class="luiz0067-quiz-feedback alert alert-success d-flex align-items-center gap-2 mt-3">
+                      <i class="fa-solid fa-circle-check text-success fa-lg"></i>
+                      <div><strong>Excelente!</strong> Você localizou o componente mestre do sistema. (+1 Ponto)</div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal 4 (Distractor) -->
+            <div class="modal fade luiz0067-modal" id="luiz0067-modal-firewall" tabindex="-1" aria-labelledby="modalLabelFw" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabelFw"><i class="fa-solid fa-shield-halved text-warning"></i> Firewall Perimetral</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Módulo de proteção de borda contra ataques DDoS e validação de tokens sanitizados.</p>
+                    <div class="luiz0067-quiz-feedback alert alert-danger d-flex align-items-center gap-2 mt-3">
+                      <i class="fa-solid fa-circle-xmark text-danger fa-lg"></i>
+                      <div><strong>Tente novamente!</strong> O Firewall é uma camada de borda, não um dos 3 componentes da aplicação principal.</div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           TAB 2: AGAMOTTO / IMAGE SLIDER LAYERS
+           ============================================== -->
+      <div class="tab-pane fade" id="content-agamotto" role="tabpanel">
+        <div class="demo-card">
+          <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+            <div>
+              <div class="demo-card-title">
+                <i class="fa-solid fa-sliders text-info"></i>
+                Modo Camadas Deslizantes (Estilo Agamotto / Before-After)
+              </div>
+              <div class="demo-card-desc">
+                Arraste a barra deslizante abaixo para inspecionar suavemente as camadas sobrepostas (Esboço Original ➔ Pintura Artística ➔ Visão Raio-X).
+              </div>
+            </div>
+            <span class="feature-tag"><i class="fa-solid fa-circle-nodes me-1"></i>Cross-Fade Interativo</span>
+          </div>
+
+          <!-- Gutenberg Block: Layers Slider Mode -->
+          <div class="wp-block-luiz0067-media-hotspot mode-image-slider-layers" data-media-type="image-slider-layers">
+            <div class="luiz0067-layers-container">
+              <div class="luiz0067-layer-frame">
+                <!-- Base Layer: Sketch -->
+                <svg class="luiz0067-base-layer" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="1000" height="500" fill="#18181b"/>
+                  <!-- Sketch lines -->
+                  <g stroke="#71717a" stroke-width="2" stroke-dasharray="5" fill="none">
+                    <circle cx="500" cy="250" r="160"/>
+                    <rect x="360" y="130" width="280" height="240" rx="10"/>
+                    <line x1="100" y1="420" x2="900" y2="420"/>
+                    <line x1="500" y1="50" x2="500" y2="450"/>
+                  </g>
+                  <text x="500" y="255" fill="#a1a1aa" font-size="28" font-weight="bold" text-anchor="middle">Camada 1: Esboço Técnico (Blueprint)</text>
+                </svg>
+
+                <!-- Overlay Layer 2: Final Artwork (Opacity Controlled) -->
+                <div class="luiz0067-overlay-layer" data-layer-index="1" style="opacity: 0;">
+                  <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="artGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#1e1b4b"/>
+                        <stop offset="100%" stop-color="#312e81"/>
+                      </linearGradient>
+                    </defs>
+                    <rect width="1000" height="500" fill="url(#artGrad)"/>
+                    <circle cx="500" cy="250" r="150" fill="#4f46e5" stroke="#818cf8" stroke-width="4"/>
+                    <polygon points="500,140 600,320 400,320" fill="#06b6d4" opacity="0.8"/>
+                    <text x="500" y="255" fill="#ffffff" font-size="28" font-weight="bold" text-anchor="middle">Camada 2: Renderização Final (Arte)</text>
+                  </svg>
+                </div>
+
+                <!-- Overlay Layer 3: Thermal / X-Ray (Opacity Controlled) -->
+                <div class="luiz0067-overlay-layer" data-layer-index="2" style="opacity: 0;">
+                  <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <radialGradient id="thermalGrad">
+                        <stop offset="0%" stop-color="#ef4444"/>
+                        <stop offset="40%" stop-color="#f59e0b"/>
+                        <stop offset="70%" stop-color="#3b82f6"/>
+                        <stop offset="100%" stop-color="#020617"/>
+                      </radialGradient>
+                    </defs>
+                    <rect width="1000" height="500" fill="url(#thermalGrad)"/>
+                    <circle cx="500" cy="250" r="130" fill="none" stroke="#ffffff" stroke-width="6" stroke-dasharray="10"/>
+                    <text x="500" y="255" fill="#fef08a" font-size="28" font-weight="bold" text-anchor="middle">Camada 3: Visão Raio-X / Térmica</text>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Slider Panel -->
+              <div class="luiz0067-slider-panel">
+                <div class="luiz0067-slider-header">
+                  <span>Controle de Camadas Agamotto</span>
+                  <span class="luiz0067-current-layer-label">Esboço Blueprint</span>
+                </div>
+                <div class="luiz0067-range-track-wrapper">
+                  <input type="range" class="luiz0067-agamotto-slider" min="0" max="200" value="0" aria-label="Controle de Camadas">
+                </div>
+                <div class="luiz0067-layer-ticks">
+                  <span class="luiz0067-layer-tick-label">1. Blueprint</span>
+                  <span class="luiz0067-layer-tick-label">2. Arte Final</span>
+                  <span class="luiz0067-layer-tick-label">3. Raio-X</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           TAB 3: PANORAMA 360 INTERACTIVE
+           ============================================== -->
+      <div class="tab-pane fade" id="content-panorama" role="tabpanel">
+        <div class="demo-card">
+          <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+            <div>
+              <div class="demo-card-title">
+                <i class="fa-solid fa-vr-cardboard text-primary"></i>
+                Modo Panorama 360° Interativo
+              </div>
+              <div class="demo-card-desc">
+                Projeção panorâmica contínua em Canvas HTML5 com rotação automática suave, controle por mouse/touch e centralização instantânea.
+              </div>
+            </div>
+            <span class="feature-tag"><i class="fa-solid fa-arrows-spin me-1"></i>360 Continuous Pan</span>
+          </div>
+
+          <!-- Gutenberg Block: Panorama 360 -->
+          <div class="wp-block-luiz0067-media-hotspot mode-panorama-360" data-media-type="panorama-360">
+            <div class="luiz0067-panorama-viewport"
+                 data-panorama-src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='600' viewBox='0 0 1600 600'><defs><linearGradient id='bgSky' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='%23030712'/><stop offset='60%' stop-color='%231e1b4b'/><stop offset='100%' stop-color='%230f172a'/></linearGradient></defs><rect width='1600' height='600' fill='url(%23bgSky)'/><circle cx='200' cy='180' r='60' fill='%2338bdf8' opacity='0.8'/><circle cx='600' cy='220' r='90' fill='%23a855f7' opacity='0.7'/><circle cx='1050' cy='160' r='75' fill='%23f43f5e' opacity='0.8'/><circle cx='1450' cy='250' r='50' fill='%2322c55e' opacity='0.8'/><polygon points='0,500 300,380 600,520 950,390 1300,510 1600,420 1600,600 0,600' fill='%23020617'/><text x='200' y='320' fill='%23ffffff' font-size='24' font-weight='bold'>Norte (0°)</text><text x='600' y='350' fill='%23ffffff' font-size='24' font-weight='bold'>Leste (90°)</text><text x='1050' y='310' fill='%23ffffff' font-size='24' font-weight='bold'>Sul (180°)</text><text x='1450' y='370' fill='%23ffffff' font-size='24' font-weight='bold'>Oeste (270°)</text></svg>"
+                 data-auto-rotate="true">
+              <div class="luiz0067-panorama-hint">
+                <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                <span>Clique e arraste para explorar em 360°</span>
+              </div>
+              <div class="luiz0067-panorama-controls">
+                <button type="button" class="luiz0067-pano-autorotate-btn active" title="Girar automaticamente">
+                  <i class="fa-solid fa-rotate"></i>
+                </button>
+                <button type="button" class="luiz0067-pano-reset-btn" title="Centralizar">
+                  <i class="fa-solid fa-compass"></i>
+                </button>
+              </div>
+              <canvas class="luiz0067-panorama-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           TAB 4: WYSIWYG EDITOR SIMULATOR
+           ============================================== -->
+      <div class="tab-pane fade" id="content-editor" role="tabpanel">
+        <div class="demo-card">
+          <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+            <div>
+              <div class="demo-card-title">
+                <i class="fa-solid fa-wand-magic-sparkles text-warning"></i>
+                Simulador do Editor Gutenberg (Clique Direto para Fixar Hotspots)
+              </div>
+              <div class="demo-card-desc">
+                Experiência WYSIWYG exata do `edit.js`: clique em qualquer ponto da imagem para fixar novas coordenadas percentuais `(X%, Y%)` instantaneamente!
+              </div>
+            </div>
+            <span class="badge bg-primary">Coordenadas Reativas</span>
+          </div>
+
+          <div class="row g-4">
+            <!-- Left: Interactive Canvas -->
+            <div class="col-lg-8">
+              <div class="editor-sim-wrapper">
+                <div class="editor-sim-canvas" id="simCanvas">
+                  <div class="luiz0067-editor-crosshair-hint">
+                    <i class="fa-solid fa-crosshairs"></i>
+                    <span>Clique em qualquer local da imagem para fixar um novo ponto!</span>
+                  </div>
+
+                  <svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" style="display:block; width:100%; height:auto; background:#1e293b;">
+                    <defs>
+                      <linearGradient id="simGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#0f172a"/>
+                        <stop offset="100%" stop-color="#334155"/>
+                      </linearGradient>
+                    </defs>
+                    <rect width="900" height="500" fill="url(#simGrad)"/>
+                    <circle cx="250" cy="220" r="100" fill="#3b82f6" opacity="0.3"/>
+                    <rect x="520" y="140" width="220" height="180" rx="16" fill="#10b981" opacity="0.25"/>
+                    <text x="450" y="460" fill="#64748b" font-size="16" font-weight="600" text-anchor="middle">Área Visual do Editor WordPress / Gutenberg</text>
+                  </svg>
+
+                  <!-- Dynamic Pins Container -->
+                  <div id="simPinsContainer"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Inspector Sidebar Form -->
+            <div class="col-lg-4">
+              <div class="card bg-dark border-secondary p-3 text-light">
+                <h6 class="fw-bold text-info mb-3"><i class="fa-solid fa-sliders me-1"></i> Barra Lateral do Gutenberg</h6>
+
+                <div class="mb-3">
+                  <label class="form-label small text-muted">Título do Ponto Selecionado</label>
+                  <input type="text" class="form-control form-control-sm bg-black text-light border-secondary" id="simPinTitle" value="Ponto 1">
+                </div>
+
+                <div class="row g-2 mb-3">
+                  <div class="col-6">
+                    <label class="form-label small text-muted">Posição X (%)</label>
+                    <input type="number" class="form-control form-control-sm bg-black text-light border-secondary" id="simPinX" value="28" readonly>
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label small text-muted">Posição Y (%)</label>
+                    <input type="number" class="form-control form-control-sm bg-black text-light border-secondary" id="simPinY" value="44" readonly>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label small text-muted">Cor do Marcador</label>
+                  <select class="form-select form-select-sm bg-black text-light border-secondary" id="simPinColor">
+                    <option value="#0d6efd">Azul Primário</option>
+                    <option value="#198754">Verde Sucesso</option>
+                    <option value="#dc3545">Vermelho Destaque</option>
+                    <option value="#ffc107">Amarelo Alerta</option>
+                    <option value="#6f42c1">Roxo Vibrante</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label small text-muted">Descrição da Janela Modal</label>
+                  <textarea class="form-control form-control-sm bg-black text-light border-secondary" id="simPinDesc" rows="3">Conteúdo detalhado configurado pelo editor.</textarea>
+                </div>
+
+                <button type="button" class="btn btn-outline-danger btn-sm w-100" id="simDeletePin">
+                  <i class="fa-solid fa-trash me-1"></i> Remover Ponto
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Block Runtime View Script -->
+  <script src="./build/view.js"></script>
+
+  <!-- Interactive Demo Script for Simulator -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const simCanvas = document.getElementById('simCanvas');
+      const simPinsContainer = document.getElementById('simPinsContainer');
+      const simPinTitle = document.getElementById('simPinTitle');
+      const simPinX = document.getElementById('simPinX');
+      const simPinY = document.getElementById('simPinY');
+      const simPinColor = document.getElementById('simPinColor');
+      const simPinDesc = document.getElementById('simPinDesc');
+      const simDeletePin = document.getElementById('simDeletePin');
+
+      let pins = [
+        { id: 1, x: 28, y: 44, title: 'Núcleo Central', color: '#0d6efd', desc: 'Ponto fixado na área azul.' },
+        { id: 2, x: 64, y: 46, title: 'Módulo Secundário', color: '#198754', desc: 'Ponto fixado na área verde.' }
+      ];
+      let selectedId = 1;
+
+      function renderPins() {
+        simPinsContainer.innerHTML = '';
+        pins.forEach(pin => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'luiz0067-hotspot-pin ' + (pin.id === selectedId ? 'is-selected' : '');
+          btn.style.left = pin.x + '%';
+          btn.style.top = pin.y + '%';
+          btn.style.backgroundColor = pin.color;
+          btn.innerHTML = `
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="luiz0067-pulse-ring" style="border-color: ${pin.color}"></span>
+            <span class="luiz0067-pin-coord-badge">${pin.x}%, ${pin.y}%</span>
+          `;
+          btn.onclick = (e) => {
+            e.stopPropagation();
+            selectPin(pin.id);
+          };
+          simPinsContainer.appendChild(btn);
+        });
+      }
+
+      function selectPin(id) {
+        selectedId = id;
+        const cur = pins.find(p => p.id === id);
+        if (cur) {
+          simPinTitle.value = cur.title;
+          simPinX.value = cur.x;
+          simPinY.value = cur.y;
+          simPinColor.value = cur.color;
+          simPinDesc.value = cur.desc;
+        }
+        renderPins();
+      }
+
+      simCanvas.addEventListener('click', (e) => {
+        const rect = simCanvas.getBoundingClientRect();
+        const x = Math.round((((e.clientX - rect.left) / rect.width) * 100) * 10) / 10;
+        const y = Math.round((((e.clientY - rect.top) / rect.height) * 100) * 10) / 10;
+
+        const newId = Date.now();
+        pins.push({
+          id: newId,
+          x,
+          y,
+          title: `Ponto ${pins.length + 1}`,
+          color: simPinColor.value || '#0d6efd',
+          desc: 'Conteúdo do ponto em ' + x + '%, ' + y + '%'
+        });
+        selectPin(newId);
+      });
+
+      simPinTitle.addEventListener('input', (e) => {
+        const cur = pins.find(p => p.id === selectedId);
+        if (cur) { cur.title = e.target.value; renderPins(); }
+      });
+
+      simPinColor.addEventListener('change', (e) => {
+        const cur = pins.find(p => p.id === selectedId);
+        if (cur) { cur.color = e.target.value; renderPins(); }
+      });
+
+      simPinDesc.addEventListener('input', (e) => {
+        const cur = pins.find(p => p.id === selectedId);
+        if (cur) { cur.desc = e.target.value; }
+      });
+
+      simDeletePin.addEventListener('click', () => {
+        pins = pins.filter(p => p.id !== selectedId);
+        if (pins.length > 0) selectPin(pins[0].id);
+        else renderPins();
+      });
+
+      renderPins();
+      selectPin(1);
+    });
+  </script>
+</body>
+</html>
