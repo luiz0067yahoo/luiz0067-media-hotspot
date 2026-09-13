@@ -1,6 +1,6 @@
 import ptBR from '../languages/pt-br.json';
 import enUS from '../languages/en-us.json';
-import itIT from '../languages/It.json';
+import itIT from '../languages/it.json';
 import esES from '../languages/es.json';
 
 const dictionaries = {

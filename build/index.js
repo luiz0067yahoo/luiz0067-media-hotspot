@@ -238,8 +238,8 @@
     }
   };
 
-  // languages/It.json
-  var It_default = {
+  // languages/it.json
+  var it_default = {
     locale: "it-IT",
     block: {
       title: "Media Interattivo con Hotspot (Luiz0067)",
@@ -370,8 +370,8 @@
     "pt": pt_br_default,
     "en-US": en_us_default,
     "en": en_us_default,
-    "it-IT": It_default,
-    "it": It_default,
+    "it-IT": it_default,
+    "it": it_default,
     "es-ES": es_default,
     "es": es_default
   };
