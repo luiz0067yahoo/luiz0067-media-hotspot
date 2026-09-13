@@ -703,34 +703,56 @@
       const urlParams = new URLSearchParams(window.location.search);
       const tabParam = (urlParams.get('tab') || window.location.hash.replace('#', '')).toLowerCase();
       if (tabParam) {
+        document.querySelectorAll('.tab-pane.fade').forEach(p => p.classList.remove('fade'));
         let targetTabBtn = null;
-        if (tabParam.includes('hotspot')) targetTabBtn = document.getElementById('tab-hotspots');
-        else if (tabParam.includes('agamotto') || tabParam.includes('slider')) targetTabBtn = document.getElementById('tab-agamotto');
-        else if (tabParam.includes('panorama') || tabParam.includes('360')) targetTabBtn = document.getElementById('tab-panorama');
-        else if (tabParam.includes('editor')) targetTabBtn = document.getElementById('tab-editor');
+        let targetPane = null;
+        if (tabParam.includes('hotspot')) {
+          targetTabBtn = document.getElementById('tab-hotspots');
+          targetPane = document.getElementById('content-hotspots');
+        } else if (tabParam.includes('agamotto') || tabParam.includes('slider')) {
+          targetTabBtn = document.getElementById('tab-agamotto');
+          targetPane = document.getElementById('content-agamotto');
+        } else if (tabParam.includes('panorama') || tabParam.includes('360')) {
+          targetTabBtn = document.getElementById('tab-panorama');
+          targetPane = document.getElementById('content-panorama');
+        } else if (tabParam.includes('editor')) {
+          targetTabBtn = document.getElementById('tab-editor');
+          targetPane = document.getElementById('content-editor');
+        }
 
-        if (targetTabBtn) {
-          const tabInstance = bootstrap.Tab.getOrCreateInstance(targetTabBtn);
-          tabInstance.show();
+        if (targetTabBtn && targetPane) {
+          document.querySelectorAll('.nav-link.active').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.tab-pane.active').forEach(p => p.classList.remove('active', 'show'));
+          targetTabBtn.classList.add('active');
+          targetPane.classList.add('active', 'show');
+          targetTabBtn.dispatchEvent(new Event('shown.bs.tab', { bubbles: true }));
         }
       }
 
-      if (urlParams.get('modal') === 'api' || tabParam === 'modal') {
-        setTimeout(() => {
-          const pin = document.querySelector('.luiz0067-hotspot-pin[data-spot-id="api"]');
-          if (pin) pin.click();
-        }, 300);
+      const modalParam = urlParams.get('modal') || (tabParam === 'modal' ? 'api' : null);
+      if (modalParam) {
+        // If modal requested via URL, remove fade class to render synchronously for screenshots
+        document.querySelectorAll('.modal.fade').forEach(m => m.classList.remove('fade'));
+        const pin = document.querySelector(`.luiz0067-hotspot-pin[data-spot-id="${modalParam}"]`);
+        if (pin) {
+          pin.click();
+        } else {
+          const targetModal = document.getElementById(`luiz0067-modal-${modalParam}`);
+          if (targetModal) {
+            bootstrap.Modal.getOrCreateInstance(targetModal).show();
+          }
+        }
       }
 
-      if (tabParam.includes('agamotto')) {
-        const sliderVal = urlParams.get('slider') || '90';
-        setTimeout(() => {
+      if (tabParam.includes('agamotto') || tabParam.includes('slider')) {
+        const sliderVal = urlParams.get('slider');
+        if (sliderVal !== null) {
           const slider = document.querySelector('.luiz0067-agamotto-slider');
           if (slider) {
             slider.value = sliderVal;
             slider.dispatchEvent(new Event('input', { bubbles: true }));
           }
-        }, 200);
+        }
       }
 
       const simCanvas = document.getElementById('simCanvas');

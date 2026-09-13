@@ -18,7 +18,7 @@
     "bootstrap-5",
     "font-awesome"
   ],
-  "author": "luiz0067",
+  "author": "Luiz Fernando Brogliatto Ferreira",
   "license": "GPL-2.0-or-later",
   "devDependencies": {
     "esbuild": "^0.25.0",

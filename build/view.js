@@ -146,27 +146,19 @@
       if (slider && layers.length > 0) {
         const updateLayers = () => {
           const val = parseFloat(slider.value);
-          const totalSteps = Math.max(1, layers.length - 1);
-          const progressPerLayer = 100;
-          const currentProgress = val / (totalSteps * 100) * totalSteps;
-          const currentActiveIndex = Math.min(layers.length - 1, Math.floor(currentProgress));
+          const currentProgress = val / 100;
           layers.forEach((layer, idx) => {
-            if (idx === 0) {
-              layer.style.opacity = Math.max(0, 1 - currentProgress);
+            const start = idx;
+            const end = idx + 1;
+            if (currentProgress <= start) {
+              layer.style.opacity = 0;
+            } else if (currentProgress >= end) {
+              layer.style.opacity = 1;
             } else {
-              const layerStart = idx - 1;
-              const layerEnd = idx;
-              if (currentProgress >= layerStart && currentProgress <= layerEnd) {
-                const fraction = currentProgress - layerStart;
-                layer.style.opacity = fraction;
-              } else if (currentProgress > layerEnd) {
-                layer.style.opacity = 1;
-              } else {
-                layer.style.opacity = 0;
-              }
+              layer.style.opacity = currentProgress - start;
             }
           });
-          const nearestIndex = Math.min(layers.length - 1, Math.round(currentProgress));
+          const nearestIndex = Math.min(tickLabels.length - 1, Math.max(0, Math.round(currentProgress)));
           if (tickLabels[nearestIndex] && labelEl) {
             labelEl.textContent = tickLabels[nearestIndex].textContent.trim();
           }
