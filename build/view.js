@@ -235,6 +235,7 @@
           render();
         };
         window.addEventListener("resize", resize);
+        document.addEventListener("shown.bs.tab", () => setTimeout(resize, 50));
         const onStart = (clientX, clientY) => {
           isDragging = true;
           startX = clientX;

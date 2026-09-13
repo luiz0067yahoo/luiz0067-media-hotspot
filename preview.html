@@ -142,6 +142,59 @@
       border-radius: 0.5rem;
       overflow: hidden;
     }
+
+    .editor-sim-canvas .luiz0067-hotspot-pin {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2.5px solid #ffffff;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      cursor: pointer;
+      z-index: 15;
+      transition: transform 0.2s, box-shadow 0.2s;
+      outline: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .editor-sim-canvas .luiz0067-hotspot-pin.is-selected {
+      border-color: #facc15;
+      box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.45);
+      transform: translate(-50%, -50%) scale(1.18);
+    }
+
+    .editor-sim-canvas .luiz0067-pulse-ring {
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      pointer-events: none;
+      animation: luiz0067-pulse 2s infinite cubic-bezier(0.24, 0, 0.38, 1);
+    }
+
+    .editor-sim-canvas .luiz0067-pin-coord-badge {
+      position: absolute;
+      bottom: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #38bdf8;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -643,9 +696,43 @@
   <!-- Block Runtime View Script -->
   <script src="./build/view.js"></script>
 
-  <!-- Interactive Demo Script for Simulator -->
+  <!-- Interactive Demo Script for Simulator and Tab URL Routing -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // URL Tab Switcher & Deep Linking Support
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabParam = (urlParams.get('tab') || window.location.hash.replace('#', '')).toLowerCase();
+      if (tabParam) {
+        let targetTabBtn = null;
+        if (tabParam.includes('hotspot')) targetTabBtn = document.getElementById('tab-hotspots');
+        else if (tabParam.includes('agamotto') || tabParam.includes('slider')) targetTabBtn = document.getElementById('tab-agamotto');
+        else if (tabParam.includes('panorama') || tabParam.includes('360')) targetTabBtn = document.getElementById('tab-panorama');
+        else if (tabParam.includes('editor')) targetTabBtn = document.getElementById('tab-editor');
+
+        if (targetTabBtn) {
+          const tabInstance = bootstrap.Tab.getOrCreateInstance(targetTabBtn);
+          tabInstance.show();
+        }
+      }
+
+      if (urlParams.get('modal') === 'api' || tabParam === 'modal') {
+        setTimeout(() => {
+          const pin = document.querySelector('.luiz0067-hotspot-pin[data-spot-id="api"]');
+          if (pin) pin.click();
+        }, 300);
+      }
+
+      if (tabParam.includes('agamotto')) {
+        const sliderVal = urlParams.get('slider') || '90';
+        setTimeout(() => {
+          const slider = document.querySelector('.luiz0067-agamotto-slider');
+          if (slider) {
+            slider.value = sliderVal;
+            slider.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        }, 200);
+      }
+
       const simCanvas = document.getElementById('simCanvas');
       const simPinsContainer = document.getElementById('simPinsContainer');
       const simPinTitle = document.getElementById('simPinTitle');

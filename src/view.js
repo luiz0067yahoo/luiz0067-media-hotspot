@@ -305,6 +305,7 @@ function initBlock(blockEl) {
       };
 
       window.addEventListener('resize', resize);
+      document.addEventListener('shown.bs.tab', () => setTimeout(resize, 50));
 
       // Mouse and Touch Interaction
       const onStart = (clientX, clientY) => {
